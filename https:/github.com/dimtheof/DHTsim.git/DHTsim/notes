@@ -1,0 +1,51 @@
+
+We want to simulate a DHT traffic
+in order to measure the possibility
+for data to be lost, based on 
+activity and replication factor.
+Another metric is the safety and
+durability against potential attacks.
+
+There will be no real time measurement.
+Instead, we will use a discrete virtual
+time, a time quantum
+(e.g. 1 second per quantum).
+All bootstrapping nodes will
+download one block per quantum
+(e.g. 1 MB per second).
+
+While bootstrapping, a node will download
+the full block chain from the DHT.
+After finished, it will "theoretically"
+discard the amount of data
+not corresponding to it and keep
+only what it is supposed to.
+
+As far as the impact of a new
+joining node or a departing one:
+There must be a time delay before
+the departure is being noticed
+(we take all departures as
+ungraceful).
+The 2K neighboring nodes,
+K predecessors and K successors
+must then adjust to the new state.
+That is, download some data
+(in case of departure only) and
+rearrange their replicas' data
+pointers. The downloading will
+be the typical, 1 block per time
+quantum, and the rearranging will
+have a standard duration (but can
+be done concurrently with the downloading
+in case of departure).
+
+
+
+
+
+
+
+
+
+
